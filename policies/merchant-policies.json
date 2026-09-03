@@ -1,0 +1,91 @@
+{
+  "name": "Demo merchant safety policy",
+  "version": "2026.08",
+  "currency": "INR",
+  "policies": [
+    {
+      "id": "AP-001",
+      "name": "Original recipient lock",
+      "description": "Refunds may only return to the recipient attached to the original payment.",
+      "tool": "issue_refund",
+      "severity": "critical",
+      "effect": "block"
+    },
+    {
+      "id": "AP-002",
+      "name": "Refund amount boundary",
+      "description": "A refund cannot exceed the captured payment amount.",
+      "tool": "issue_refund",
+      "severity": "critical",
+      "effect": "block"
+    },
+    {
+      "id": "AP-003",
+      "name": "High-value approval",
+      "description": "Refunds above ₹1,000 require a human decision before execution.",
+      "tool": "issue_refund",
+      "severity": "high",
+      "effect": "require_approval",
+      "threshold": 1000
+    },
+    {
+      "id": "AP-004",
+      "name": "One refund per customer per day",
+      "description": "A customer cannot receive more than one refund in a rolling demo day.",
+      "tool": "issue_refund",
+      "severity": "high",
+      "effect": "block",
+      "limit": 1
+    },
+    {
+      "id": "AP-005",
+      "name": "Bounded payment links",
+      "description": "Payment links must be ₹5,000 or less and include an expiry.",
+      "tool": "create_payment_link",
+      "severity": "high",
+      "effect": "block",
+      "threshold": 5000
+    },
+    {
+      "id": "AP-006",
+      "name": "Contact frequency cap",
+      "description": "At most two recovery messages may be sent for a case.",
+      "tool": "send_customer_message",
+      "severity": "medium",
+      "effect": "block",
+      "limit": 2
+    },
+    {
+      "id": "AP-007",
+      "name": "Stop after success",
+      "description": "Recovery links and messages must stop once the payment is successful.",
+      "tool": "create_payment_link, send_customer_message",
+      "severity": "critical",
+      "effect": "block"
+    },
+    {
+      "id": "AP-008",
+      "name": "Untrusted-instruction isolation",
+      "description": "Financial actions derived from detected prompt injection are blocked unless explicitly pre-authorized.",
+      "tool": "issue_refund, create_payment_link",
+      "severity": "critical",
+      "effect": "block"
+    },
+    {
+      "id": "AP-009",
+      "name": "Idempotent execution",
+      "description": "The same business action and event may execute no more than once.",
+      "tool": "all",
+      "severity": "critical",
+      "effect": "block"
+    },
+    {
+      "id": "AP-010",
+      "name": "Fresh-state revalidation",
+      "description": "Case state is fetched again immediately before a consequential action executes.",
+      "tool": "all",
+      "severity": "critical",
+      "effect": "block"
+    }
+  ]
+}
