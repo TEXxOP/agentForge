@@ -1,0 +1,54 @@
+# AgentProof — Render Blueprint (spec: https://render.com/docs/blueprint-spec)
+# Render dashboard > New > Blueprint > pick this repository. One Node web service, nothing else.
+# The demo is self-contained: SQLite is created and seeded on boot, the simulator adapter
+# needs no credentials, and the built frontend is served by the same process from public/.
+services:
+  - type: web
+    name: agentproof
+    runtime: node # current spec key; replaces the deprecated `env: node`
+    plan: free
+    region: oregon
+    # `--include=dev` is required because NODE_ENV=production below would otherwise make
+    # npm skip devDependencies, and vite lives there. Without it the build has no bundler.
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: node server.mjs
+    healthCheckPath: /api/health-deep
+    autoDeployTrigger: commit # current spec key; equivalent to the deprecated `autoDeploy: true`
+    envVars:
+      - key: HOST
+        value: "0.0.0.0"
+      - key: NODE_ENV
+        value: production
+      - key: PAYMENT_ADAPTER
+        value: simulator
+      # Render's free instances have an ephemeral filesystem and the repo checkout is
+      # read-only-ish across restarts; /tmp is always writable. The audit chain and the
+      # 60-case evaluation are reseeded on every boot, which is what the demo wants.
+      - key: AGENTPROOF_DB_PATH
+        value: /tmp/agentproof.db
+      # Paste the Vercel origin here (e.g. https://agentproof.vercel.app) if the frontend is
+      # hosted separately. Comma-separated, no trailing slash. Unset means same-origin only.
+      - key: ALLOWED_ORIGINS
+        sync: false
+      # Optional: this service's own public URL, used for readable deploy logs and docs.
+      - key: PUBLIC_ORIGIN
+        sync: false
+      # Optional test-mode Razorpay credentials. Leave unset to stay on the simulator.
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      # Optional OpenAI-compatible model for adversarial scenario drafts. The seeded
+      # evaluation and the five-part guided proof run fully offline without these.
+      - key: AGENTPROOF_LLM_BASE_URL
+        sync: false
+      - key: AGENTPROOF_LLM_API_KEY
+        sync: false
+      - key: AGENTPROOF_LLM_MODEL
+        sync: false
+    # Persistent audit trail on a paid instance: attach a disk, then point
+    # AGENTPROOF_DB_PATH at /var/data/agentproof.db instead of /tmp.
+    # disk:
+    #   name: agentproof-data
+    #   mountPath: /var/data
+    #   sizeGB: 1
