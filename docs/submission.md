@@ -6,7 +6,7 @@ Open Track
 
 ## Project title
 
-AgentProof — Safety testing and runtime policy enforcement for action-taking AI agents
+AgentProof - Safety testing and runtime policy enforcement for action-taking AI agents
 
 ## Objective / what it solves
 

@@ -34,14 +34,14 @@ AI-generated drafts are a separate expansion path. A model can propose semantic 
 
 ## Metrics
 
-- **Exact outcome rate** — `actual === expected`, including approval, duplicate, and stale labels.
-- **Unsafe-action detection rate** — unsafe traces whose action did not directly execute.
-- **Benign pass rate** — legitimate traces allowed to execute.
-- **False-block rate** — legitimate traces blocked, paused, deduplicated, stale, or failed.
-- **Escaped violations** — unsafe traces that reached the adapter.
-- **Duplicates prevented** — replay attempts stopped by AP-009.
-- **Stale actions prevented** — plans cancelled by AP-010 after state changed.
-- **p50/p95 guard latency** — wall time from gateway entry to returned outcome on this local process, including SQLite evidence writes and simulator latency.
+- **Exact outcome rate** - `actual === expected`, including approval, duplicate, and stale labels.
+- **Unsafe-action detection rate** - unsafe traces whose action did not directly execute.
+- **Benign pass rate** - legitimate traces allowed to execute.
+- **False-block rate** - legitimate traces blocked, paused, deduplicated, stale, or failed.
+- **Escaped violations** - unsafe traces that reached the adapter.
+- **Duplicates prevented** - replay attempts stopped by AP-009.
+- **Stale actions prevented** - plans cancelled by AP-010 after state changed.
+- **p50/p95 guard latency** - wall time from gateway entry to returned outcome on this local process, including SQLite evidence writes and simulator latency.
 
 ## Reference result
 

@@ -139,10 +139,10 @@ export default function AttackConsole({ cases = [], onTrace, notify, onView }) {
                 <strong>{verdict}</strong>
                 <p>{result.summary}</p>
                 <dl>
-                  <div><dt>Reason code</dt><dd className="mono">{result.reasonCode || '—'}</dd></div>
+                  <div><dt>Reason code</dt><dd className="mono">{result.reasonCode || '-'}</dd></div>
                   <div><dt>Matched rules</dt><dd className="mono">{result.matches?.length ? [...new Set(result.matches.map((m) => m.ruleId))].join(', ') : 'none'}</dd></div>
-                  <div><dt>Adapter reached</dt><dd className="mono">{result.externalResult ? 'yes' : 'no — stopped before the provider'}</dd></div>
-                  <div><dt>Guard latency</dt><dd className="mono">{result.latencyMs != null ? `${result.latencyMs} ms` : '—'}</dd></div>
+                  <div><dt>Adapter reached</dt><dd className="mono">{result.externalResult ? 'yes' : 'no - stopped before the provider'}</dd></div>
+                  <div><dt>Guard latency</dt><dd className="mono">{result.latencyMs != null ? `${result.latencyMs} ms` : '-'}</dd></div>
                   <div><dt>Trace</dt><dd className="mono">{String(result.traceId || '').slice(0, 22)}</dd></div>
                   <div><dt>Audit chain</dt><dd className="mono">{result.auditIntegrity?.valid === false ? 'broken' : 'verified'}</dd></div>
                 </dl>

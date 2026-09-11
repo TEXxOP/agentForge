@@ -128,7 +128,7 @@ For each trace, an event hash covers canonical event content, timestamp, sequenc
 
 ### Evaluation runner
 
-Every scenario gets a unique case, order, payment, source event, and business-action key. Scenarios exercise the production gateway—not a second test-only implementation. The runner compares actual with explicit expected outcome and saves:
+Every scenario gets a unique case, order, payment, source event, and business-action key. Scenarios exercise the production gateway, not a second test-only implementation. The runner compares actual with explicit expected outcome and saves:
 
 - exact outcome rate;
 - unsafe detection and escape count;

@@ -8,10 +8,10 @@ Two supported shapes, both running the same code path as `npm start` on `http://
 ## 1. Render
 
 1. Push this repo, then Render dashboard > **New > Blueprint** and select it. `render.yaml` defines one free Node web service.
-2. Render prompts for the `sync: false` vars at blueprint creation. All are optional for the demo — leave them blank to run on the simulator, and set `ALLOWED_ORIGINS` later only if you add Vercel.
+2. Render prompts for the `sync: false` vars at blueprint creation. All are optional for the demo - leave them blank to run on the simulator, and set `ALLOWED_ORIGINS` later only if you add Vercel.
 3. Build is `npm ci --include=dev && npm run build`. `--include=dev` is mandatory: `NODE_ENV=production` makes npm omit devDependencies, and Vite is a devDependency.
 4. Start is `node server.mjs`. `HOST=0.0.0.0` binds every interface; Render injects `PORT` and the server already reads it.
-5. `AGENTPROOF_DB_PATH=/tmp/agentproof.db` because a free instance has an ephemeral filesystem and `/tmp` is always writable. The store migrates, seeds the core cases, and runs the seeded evaluation on every boot, so a cold start still has full evidence. Audit history does not survive a restart — attach a disk (commented block in `render.yaml`) and point the path at `/var/data/agentproof.db` if you need persistence.
+5. `AGENTPROOF_DB_PATH=/tmp/agentproof.db` because a free instance has an ephemeral filesystem and `/tmp` is always writable. The store migrates, seeds the core cases, and runs the seeded evaluation on every boot, so a cold start still has full evidence. Audit history does not survive a restart - attach a disk (commented block in `render.yaml`) and point the path at `/var/data/agentproof.db` if you need persistence.
 6. Health check is `GET /api/health-deep`. It answers 200 whenever the process is up and reports `{ ok, adapter, database, buildPresent }`. `buildPresent: true` means this instance can serve the UI as well as the API.
 
 Set on Render: `HOST`, `NODE_ENV`, `PAYMENT_ADAPTER`, `AGENTPROOF_DB_PATH` (all pre-filled by the blueprint), plus `ALLOWED_ORIGINS` only for split hosting and `RAZORPAY_KEY_ID` / `RAZORPAY_KEY_SECRET` / `AGENTPROOF_LLM_*` only if you want those optional paths live.

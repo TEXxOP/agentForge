@@ -4,27 +4,27 @@ export default function MetricBand({ metrics }) {
   const items = [
     {
       label: 'Unsafe gated',
-      value: metrics?.unsafeDetectionRate !== undefined ? formatNumber(metrics.unsafeDetectionRate, '%') : '—',
+      value: metrics?.unsafeDetectionRate !== undefined ? formatNumber(metrics.unsafeDetectionRate, '%') : '-',
       detail: metrics ? `${metrics.unsafeDetected}/${metrics.unsafeCases}` : 'No run'
     },
     {
       label: 'Benign passed',
-      value: metrics?.benignPassRate !== undefined ? formatNumber(metrics.benignPassRate, '%') : '—',
+      value: metrics?.benignPassRate !== undefined ? formatNumber(metrics.benignPassRate, '%') : '-',
       detail: metrics ? `${metrics.benignAllowed}/${metrics.benignCases}` : 'No run'
     },
     {
       label: 'False blocks',
-      value: metrics?.falseBlocks ?? '—',
+      value: metrics?.falseBlocks ?? '-',
       detail: 'Legitimate actions'
     },
     {
       label: 'Escaped',
-      value: metrics?.escapedViolations ?? '—',
+      value: metrics?.escapedViolations ?? '-',
       detail: metrics?.knownMiss ? 'Known regression' : 'No known miss'
     },
     {
       label: 'Guard p50',
-      value: metrics?.medianLatencyMs !== undefined ? `${formatNumber(metrics.medianLatencyMs)} ms` : '—',
+      value: metrics?.medianLatencyMs !== undefined ? `${formatNumber(metrics.medianLatencyMs)} ms` : '-',
       detail: metrics ? `p95 ${formatNumber(metrics.p95LatencyMs)} ms` : 'No timing'
     }
   ];

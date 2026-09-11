@@ -49,9 +49,9 @@ export default function ArchitectureView({ product, evaluation, trace, onView })
     ['Adapter', product?.environmentLabel || 'Payment simulator'],
     ['Policy rules', '10'],
     ['Guided cases', '5'],
-    ['Release gate', metrics ? `${metrics.exactOutcomes ?? '—'} / ${metrics.total ?? '—'}` : '—'],
-    ['Unsafe gated', metrics ? `${metrics.unsafeGated ?? '—'} / ${metrics.unsafeTotal ?? metrics.unsafe ?? '—'}` : '—'],
-    ['Median guard', metrics?.medianLatencyMs != null ? `${Number(metrics.medianLatencyMs).toFixed(2)} ms` : '—']
+    ['Release gate', metrics ? `${metrics.exactOutcomes ?? '-'} / ${metrics.total ?? '-'}` : '-'],
+    ['Unsafe gated', metrics ? `${metrics.unsafeGated ?? '-'} / ${metrics.unsafeTotal ?? metrics.unsafe ?? '-'}` : '-'],
+    ['Median guard', metrics?.medianLatencyMs != null ? `${Number(metrics.medianLatencyMs).toFixed(2)} ms` : '-']
   ];
 
   return (
@@ -60,7 +60,7 @@ export default function ArchitectureView({ product, evaluation, trace, onView })
         <div>
           <span className="mono-label">Architecture · explain it here</span>
           <h1>One mandatory path between intent and money.</h1>
-          <p>Every consequential action crosses the same eight deterministic stages. Click any node to see what it guarantees — and what it deliberately does not.</p>
+          <p>Every consequential action crosses the same eight deterministic stages. Click any node to see what it guarantees, and what it deliberately does not.</p>
         </div>
         <div className="arch-controls">
           <button className="solid-button" onClick={() => { clearTimeout(timer.current); walk(0); }}><Play size={13} /> Trace a request</button>

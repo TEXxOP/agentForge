@@ -1,5 +1,5 @@
 export function formatNumber(value, suffix = '') {
-  if (value === null || value === undefined || Number.isNaN(Number(value))) return '—';
+  if (value === null || value === undefined || Number.isNaN(Number(value))) return '-';
   return `${new Intl.NumberFormat('en-IN', { maximumFractionDigits: 1 }).format(Number(value))}${suffix}`;
 }
 
@@ -12,7 +12,7 @@ export function formatMoney(value) {
 }
 
 export function formatTime(value) {
-  if (!value) return '—';
+  if (!value) return '-';
   return new Intl.DateTimeFormat('en-IN', {
     hour: '2-digit',
     minute: '2-digit',
@@ -21,7 +21,7 @@ export function formatTime(value) {
 }
 
 export function timeAgo(value) {
-  if (!value) return '—';
+  if (!value) return '-';
   const seconds = Math.max(0, Math.round((Date.now() - new Date(value).getTime()) / 1000));
   if (seconds < 60) return `${seconds}s ago`;
   const minutes = Math.floor(seconds / 60);

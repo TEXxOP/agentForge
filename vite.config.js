@@ -9,7 +9,7 @@ export default defineConfig({
   build: {
     outDir: resolve('public'),
     emptyOutDir: true,
-    sourcemap: true
+    sourcemap: false
   },
   server: {
     host: '127.0.0.1',

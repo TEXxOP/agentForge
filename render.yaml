@@ -1,4 +1,4 @@
-# AgentProof — Render Blueprint (spec: https://render.com/docs/blueprint-spec)
+# AgentProof - Render Blueprint (spec: https://render.com/docs/blueprint-spec)
 # Render dashboard > New > Blueprint > pick this repository. One Node web service, nothing else.
 # The demo is self-contained: SQLite is created and seeded on boot, the simulator adapter
 # needs no credentials, and the built frontend is served by the same process from public/.

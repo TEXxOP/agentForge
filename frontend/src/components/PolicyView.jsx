@@ -31,7 +31,7 @@ export default function PolicyView({
     <main className="page policy-page">
       <section className="page-heading">
         <div>
-          <span className="mono-label">{policyMeta?.name || 'MERCHANT POLICY'} / V{policyMeta?.version || '—'}</span>
+          <span className="mono-label">{policyMeta?.name || 'MERCHANT POLICY'} / V{policyMeta?.version || '-'}</span>
           <h1>One policy. Test and runtime.</h1>
           <p>AI proposes new cases; deterministic controls retain authority over money.</p>
         </div>
