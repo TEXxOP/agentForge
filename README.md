@@ -15,10 +15,6 @@ This is a recording of the real local app blocking an injected refund, showing t
 
 ![AgentProof product walkthrough](./docs/assets/agentproof-demo.gif)
 
-If your Markdown viewer does not animate GIFs, use this static preview:
-
-![AgentProof product preview](./docs/assets/agentproof-demo-preview.png)
-
 ## What it protects against
 
 - Prompt injection attempting to authorize money actions
